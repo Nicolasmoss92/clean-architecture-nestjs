@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { KnexModule } from './database/knex.module';
+import { KnexModule } from './infrastructure/database/knex.module';
 
 @Module({
   imports: [KnexModule],
