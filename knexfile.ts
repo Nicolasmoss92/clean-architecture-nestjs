@@ -14,10 +14,10 @@ const config: Knex.Config = {
   },
   migrations: {
     tableName: 'knex_migrations',
-    directory: './migrations',
+    directory: './src/infrastructure/database/migrations',
   },
   seeds: {
-    directory: './seeds',
+    directory: './src/infrastructure/database/seeds',
   },
 };
 

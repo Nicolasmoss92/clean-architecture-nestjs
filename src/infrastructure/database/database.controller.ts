@@ -1,13 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
 import { DatabaseService } from './database.service';
 
+
 @Controller('database')
 export class DatabaseController {
   constructor(private readonly databaseService: DatabaseService) {}
 
   @Get('test-connection')
   async testConnection() {
-    const isConnected = await this.databaseService.testConnection();
+    const isConnected = await this.databaseService.getConnection();
     return {
       success: isConnected,
       message: isConnected
