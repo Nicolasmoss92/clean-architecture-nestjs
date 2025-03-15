@@ -12,6 +12,7 @@ const config: Knex.Config = {
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
   },
+  searchPath: ['pet_service'],
   migrations: {
     tableName: 'knex_migrations',
     directory: './src/infrastructure/database/migrations',
