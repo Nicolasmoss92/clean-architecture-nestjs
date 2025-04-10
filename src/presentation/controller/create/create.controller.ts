@@ -1,5 +1,5 @@
 import { Controller, Get, Post } from '@nestjs/common';
-import { PetService } from 'src/application/usecases/create/create';
+import { PetService } from 'src/core/usecases/create/create';
 
 @Controller('petServiceCreate')
 export class PetController {
