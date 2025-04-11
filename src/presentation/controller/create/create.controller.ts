@@ -1,12 +1,13 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { PetService } from 'src/core/usecases/create/create';
+import { Controller, Inject, Post } from '@nestjs/common';
 
 @Controller('petServiceCreate')
 export class PetController {
-  constructor(private readonly petService: PetService) {}
+  constructor(
+    @Inject('CreatePetUsecase') private readonly createPetUsecase: CreatePetUsecase
+  ) {}
 
   @Post()
-  createPet(): string {
-    return this.petService.getHello();
+  createPet(): Promise<any> {
+    return this.createPetUsecase.createPet();
   }
 }
