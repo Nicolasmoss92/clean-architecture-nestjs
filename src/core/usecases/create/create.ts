@@ -8,6 +8,7 @@ export class createPetUsecase implements ICreatePetUseCase  {
         @Inject('PetRepository') private pet_repository: IPetRepository
     ) {}
 
-    async createPet(): <> {
+    async createPet(): Promise<any> {
+        return null;
     }
 }
