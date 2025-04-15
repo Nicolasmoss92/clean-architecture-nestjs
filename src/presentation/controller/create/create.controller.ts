@@ -1,9 +1,10 @@
 import { Controller, Inject, Post } from '@nestjs/common';
+import { ICreatePetUseCase } from 'src/core/usecases/create/create.interface';
 
 @Controller('petServiceCreate')
 export class PetController {
   constructor(
-    @Inject('CreatePetUsecase') private readonly createPetUsecase: CreatePetUsecase
+    @Inject('CreatePetUseCase') private readonly createPetUsecase: ICreatePetUseCase,
   ) {}
 
   @Post()

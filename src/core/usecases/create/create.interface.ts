@@ -1,4 +1,4 @@
 export interface ICreatePetUseCase {
-    createPet(): Promise<any>;
+  create(): Promise<any>;
   }
   

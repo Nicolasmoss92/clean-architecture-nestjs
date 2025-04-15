@@ -1,3 +1,3 @@
 export interface IPetRepository {
-    createPet(): <>
+    create(): Promise<any>
 }
