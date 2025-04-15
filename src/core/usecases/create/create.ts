@@ -3,12 +3,12 @@ import { ICreatePetUseCase } from './create.interface';
 import { IPetRepository } from 'src/core/ports/pet.repository';
 
 @Injectable()
-export class createPetUsecase implements ICreatePetUseCase  {
+export class CreatePetUsecase implements ICreatePetUseCase  {
     constructor(
         @Inject('PetRepository') private pet_repository: IPetRepository
     ) {}
 
-    async createPet(): Promise<any> {
+    async create(): Promise<any> {
         return null;
     }
 }
