@@ -1,3 +1,5 @@
+import { Pet } from "../entities/pet";
+
 export interface IPetRepository {
-    create(): Promise<any>
+    create(body: Pet): Promise<any>
 }

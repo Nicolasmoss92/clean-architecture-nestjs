@@ -5,7 +5,7 @@ import { DatabaseService } from '../database/database.service';
 
 @Global()
 @Module({
-  imports: [ConfigModule], 
+  imports: [ConfigModule],
   providers: [
     {
       provide: 'KnexConnection',
@@ -14,11 +14,11 @@ import { DatabaseService } from '../database/database.service';
         return knex({
           client: 'pg',
           connection: {
-            host: configService.get<string>('DB_HOST'),
-            port: configService.get<number>('DB_PORT'),
-            user: configService.get<string>('DB_USER'),
-            password: configService.get<string>('DB_PASSWORD'),
-            database: configService.get<string>('DB_NAME'),
+            host: 'localhost',
+            port: 5432,
+            user: 'pet_service',
+            password: '1234',
+            database: 'pet_service',
           },
           migrations: {
             tableName: 'migrations',
@@ -32,6 +32,6 @@ import { DatabaseService } from '../database/database.service';
     },
     DatabaseService,
   ],
-  exports: ['KnexConnection', DatabaseService], 
+  exports: ['KnexConnection', DatabaseService],
 })
-export class KnexModule {}
+export class KnexModule { }
