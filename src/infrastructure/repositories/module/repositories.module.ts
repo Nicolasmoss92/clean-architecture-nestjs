@@ -3,10 +3,10 @@ import { PetRepository } from '../pet';
 import { KnexModule } from 'src/infrastructure/database/knex.module';
 
 @Module({
-  imports: [KnexModule], // importa o módulo que fornece o Knex
+  imports: [KnexModule], 
   providers: [
     {
-      provide: 'PetRepository', // <- esse nome deve bater com o que você usa no @Inject()
+      provide: 'PetRepository',
       useClass: PetRepository,
     },
   ],

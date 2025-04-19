@@ -1,7 +1,6 @@
 import { Knex } from 'knex';
 
 export async function seed(knex: Knex): Promise<void> {
-  // Remove todos os registros existentes
   await knex('pets').del();
 
   await knex('pets').insert([
