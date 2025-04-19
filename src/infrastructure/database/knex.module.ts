@@ -5,7 +5,7 @@ import { DatabaseService } from '../database/database.service';
 
 @Global()
 @Module({
-  imports: [ConfigModule], // Importa o módulo de configuração
+  imports: [ConfigModule], 
   providers: [
     {
       provide: 'KnexConnection',
@@ -32,6 +32,6 @@ import { DatabaseService } from '../database/database.service';
     },
     DatabaseService,
   ],
-  exports: ['KnexConnection', DatabaseService], // Exporta para ser usado em repositórios
+  exports: ['KnexConnection', DatabaseService], 
 })
 export class KnexModule {}

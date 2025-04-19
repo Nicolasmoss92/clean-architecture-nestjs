@@ -5,10 +5,10 @@ import { IPetRepository } from 'src/core/ports/pet.repository';
 @Injectable()
 export class CreatePetUsecase implements ICreatePetUseCase  {
     constructor(
-        @Inject('PetRepository') private pet_repository: IPetRepository
+        @Inject('PetRepository') private petRepository: IPetRepository
     ) {}
 
     async create(): Promise<any> {
-        return null;
+       await this.petRepository.create();
     }
 }
