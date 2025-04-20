@@ -1,30 +1,32 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Arquitetura Limpa com NestJS 
+Este projeto foi desenvolvido com foco em escalabilidade, manutenibilidade e clareza de responsabilidades, seguindo os princípios da Clean Architecture.
+
+Optei por não utilizar classes genéricas como BaseController ou BaseRepository, e essa decisão foi totalmente consciente e estratégica.
+
+Por que não usar bases genéricas?
+Aproveitamento inteligente do NestJS:
+O NestJS já fornece uma arquitetura baseada em decorators e injeção de dependência que facilita a separação de camadas e o desacoplamento de responsabilidades. Criar controladores ou repositórios genéricos traria complexidade desnecessária e violaria o princípio KISS (Keep It Simple, Stupid).
+
+Foco na coesão e clareza:
+Cada classe foi pensada para representar um único propósito. Com isso, cada controller é responsável por um caso de uso específico, facilitando testes, manutenções e futuras evoluções do código.
+
+Interfaces e inversão de dependência na prática:
+A arquitetura respeita o fluxo de dependências da Clean Architecture — o domínio não depende de frameworks. Todas as dependências são invertidas por meio de interfaces e injeção de dependência. Isso garante um sistema altamente testável, desacoplado e pronto para mudanças.
+
+Casos de uso isolados e independentes de frameworks
+Os casos de uso foram implementados sem dependência direta do NestJS. Toda a lógica de negócio vive no núcleo da aplicação, e as únicas menções ao framework são:
+
+ - O decorator @Injectable() para permitir injeção;
+
+ - O uso de @Inject() para resolução de dependências.
+
+Essas inserções são mínimas e poderiam ser facilmente trocadas por qualquer mecanismo de injeção, mantendo o núcleo da aplicação limpo, reutilizável e desacoplado da infraestrutura.
+
+Objetivo
+Esse projeto tem como objetivo ser um modelo base reutilizável para aplicações Node.js com NestJS, aplicando os princípios da Arquitetura Limpa desde o início, permitindo um crescimento saudável e controlado da aplicação.
 
 ## Project setup
 
