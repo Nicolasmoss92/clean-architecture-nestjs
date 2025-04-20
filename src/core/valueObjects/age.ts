@@ -1,4 +1,4 @@
-import { ValueObject } from "./value-object";
+import { ValueObject } from "./base-value-object";
 
 export class Age extends ValueObject {
   constructor(protected value: number) {

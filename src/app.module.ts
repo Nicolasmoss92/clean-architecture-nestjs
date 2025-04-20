@@ -1,20 +1,17 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { KnexModule } from './infrastructure/database/knex.module';
-import { PetController } from './presentation/controller/create/create.controller';
-import { CreatePetUsecase } from './core/usecases/create/create';
+import { CreatePetUsecase } from './core/useCases/createPet/create-pet.usecase';
 import { RepositoriesModule } from './infrastructure/repositories/module/repositories.module';
+import { PetController } from './presentation/controller/createPet/create-pet.controller';
 
 @Module({
   imports: [KnexModule, RepositoriesModule],
-  controllers: [AppController, PetController],
+  controllers: [PetController],
   providers: [
-    AppService,
     {
       provide: 'CreatePetUseCase',
       useClass: CreatePetUsecase,
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }
