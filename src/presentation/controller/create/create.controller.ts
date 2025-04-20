@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Inject, Post } from '@nestjs/common';
 import { ICreatePetUseCase } from 'src/core/usecases/create/create.interface';
 import { CreatePetDto } from './create.dto';
 import { Pet } from 'src/core/entities/pet';
@@ -11,8 +11,9 @@ export class PetController {
   ) {}
 
   @Post()
-  async create(@Body() createPetDto: CreatePetDto): Promise<any> {
+  @HttpCode(204)
+  async handle(@Body() createPetDto: CreatePetDto): Promise<void> {
     const pet = PetMapper.fromCreateDtoToEntity(createPetDto);
-    return await this.createPetUsecase.create(pet);
+    await this.createPetUsecase.create(pet);
   }
 }
