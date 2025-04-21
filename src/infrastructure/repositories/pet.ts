@@ -9,7 +9,11 @@ export class PetRepository implements IPetRepository {
     @Inject('KnexConnection') private readonly knex: Knex
   ) {}
 
-  async create(body: Pet): Promise<any> {
-    return await this.knex('pets').insert(body);
+  async create(body: Pet): Promise<string> {
+    const [inserted] = await this.knex('pets')
+      .insert(body)
+      .returning('id');
+  
+    return inserted.toString();
   }
 }

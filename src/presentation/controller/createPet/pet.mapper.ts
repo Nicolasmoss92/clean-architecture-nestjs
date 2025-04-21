@@ -1,5 +1,5 @@
 import { Pet } from "src/core/entities/pet";
-import { CreatePetDto } from "./create-pet..dto";
+import { CreatePetDto } from "./create-pet.dto";
 
 export class PetMapper {
   static fromCreateDtoToEntity(dto: CreatePetDto): Pet {
