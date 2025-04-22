@@ -25,13 +25,29 @@ describe('CreatePetUsecase', () => {
   });
 
   it('should call petRepository.create with the correct arguments', async () => {
-    const pet = { id: '1', name: 'Buddy', age: 3, species: 'Dog', ownerId: 'owner1', created_at: new Date(), updated_at: new Date() };
+    const pet = new Pet({
+        id: '1',
+        name: 'Buddy',
+        age: 3,
+        species: 'Dog',
+        ownerId: 'owner1',
+        created_at: new Date(),
+        updated_at: new Date(),
+      });
     await createPetUsecase.create(pet);
     expect(petRepositoryMock.create).toHaveBeenCalledWith(pet);
   });
 
   it('should throw an error if petRepository.create fails', async () => {
-    const pet: Pet = { id: '1', name: 'Buddy', age: 3, species: 'Dog' };
+    const pet = new Pet({
+        id: '1',
+        name: 'Buddy',
+        age: 3,
+        species: 'Dog',
+        ownerId: 'owner1',
+        created_at: new Date(),
+        updated_at: new Date(),
+      });
     petRepositoryMock.create.mockRejectedValue(new Error('Database error'));
 
     await expect(createPetUsecase.create(pet)).rejects.toThrow('Database error');

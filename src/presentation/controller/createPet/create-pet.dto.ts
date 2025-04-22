@@ -2,6 +2,7 @@ import { IsInt, IsNotEmpty, IsString, IsUUID, Max, Min } from "class-validator";
 
 export class CreatePetDto {
     @IsUUID()
+    @IsNotEmpty()
     id: string;
 
     @IsString()
