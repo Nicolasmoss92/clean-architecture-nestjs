@@ -4,7 +4,7 @@
 Arquitetura Limpa com NestJS 
 Este projeto foi desenvolvido com foco em escalabilidade, manutenibilidade e clareza de responsabilidades, seguindo os princípios da Clean Architecture.
 
-Optei por não utilizar classes genéricas como BaseController ou BaseRepository, e essa decisão foi totalmente consciente e estratégica.
+Optei por não utilizar classes genéricas como BaseController ou BaseRepository.
 
 Por que não usar bases genéricas?
 Aproveitamento inteligente do NestJS:
