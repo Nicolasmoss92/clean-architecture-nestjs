@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { PetRepository } from "src/infrastructure/repositories/pet";
 import { IDeletePetByIdUseCase } from "./delete-pet-by-id.interface";
 import { IPetRepository } from "src/core/ports/pet.repository";
@@ -10,7 +10,7 @@ export class DeletePetByIdUseCase implements IDeletePetByIdUseCase {
   ) { }
 
   async deleteById(id: string): Promise<void> {
-    const pet = await this.petRepository.findById(id);
+    const pet = await this.petRepository.getPetById(id);
     if (!pet) {
       throw new NotFoundException(`Pet with id ${id} not found`);
     }
