@@ -17,9 +17,15 @@ export class PetRepository implements IPetRepository {
     return inserted.toString();
   }
 
-  async getPetById(id: string): Promise<Pet> {
+  async findById(id: string): Promise<Pet> {
       return this.knex('pets')
       .where('id', id)
       .first();
+  }
+
+  async deleteById(id: string): Promise<void> {
+    await this.knex('pets')
+      .where('id', id)
+      .delete();
   }
 }
