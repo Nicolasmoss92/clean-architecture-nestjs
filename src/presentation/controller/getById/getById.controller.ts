@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Inject, Injectable, Post } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, Inject } from "@nestjs/common";
 import { GetPetByIdDto } from "./get-pet-by-id.dto";
 import { GetPetByIdResponse } from "./get-pet-by-id-reposnse.dto";
 import { GetPetByIdUseCase } from "src/core/useCases/getPetById/get-pet-by-id.usecase";

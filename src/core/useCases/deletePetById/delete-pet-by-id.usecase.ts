@@ -1,5 +1,4 @@
 import { Inject, Injectable, NotFoundException } from "@nestjs/common";
-import { PetRepository } from "src/infrastructure/repositories/pet";
 import { IDeletePetByIdUseCase } from "./delete-pet-by-id.interface";
 import { IPetRepository } from "src/core/ports/pet.repository";
 
