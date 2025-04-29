@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Inject, Injectable, Post } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, Inject, Injectable, Post } from "@nestjs/common";
 import { GetPetByIdDto } from "./get-pet-by-id.dto";
 import { GetPetByIdResponse } from "./get-pet-by-id-reposnse.dto";
 import { GetPetByIdUseCase } from "src/core/useCases/getPetById/get-pet-by-id.usecase";
@@ -6,10 +6,10 @@ import { GetPetByIdUseCase } from "src/core/useCases/getPetById/get-pet-by-id.us
 @Controller('petServiceGetById')
 export class GetPetByIdController {
     constructor(
-      @Inject('GetPetB4yIdUseCase') private readonly getPetByIdUseCase: GetPetByIdUseCase,
+      @Inject('GetPetByIdUseCase') private readonly getPetByIdUseCase: GetPetByIdUseCase,
     ) {}
   
-    @Post()
+    @Get()
     @HttpCode(200)
     async handle(@Body() getPetById: GetPetByIdDto): Promise<GetPetByIdResponse> {
       const { id } = getPetById;
