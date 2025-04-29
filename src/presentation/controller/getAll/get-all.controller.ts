@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Inject, Injectable, Post } from "@nestjs/common";
+import { Controller, Get, HttpCode, Inject } from "@nestjs/common";
 import { GetPetByIdResponse } from "../getById/get-pet-by-id-reposnse.dto";
 
 @Controller('petServiceGetAll')
