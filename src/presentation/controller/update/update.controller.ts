@@ -1,4 +1,6 @@
-import { Body, Controller, HttpCode, Inject, Injectable, Post } from "@nestjs/common";
+import { Body, Controller, HttpCode, Inject, Injectable, Post, Put } from "@nestjs/common";
+import { UpdatePetByIdDto } from "./update-pet-by-id.dto";
+import { UpdatePetByIdUseCase } from "src/core/useCases/updatePetById/update-pet-by-id.usecase";
 
 @Controller('petServiceUpdateById')
 export class UpdatePetByIdController {
@@ -6,12 +8,10 @@ export class UpdatePetByIdController {
       @Inject('UpdatePetByIdUseCase') private readonly updatePetByIdUseCase: UpdatePetByIdUseCase,
     ) {}
   
-    @Update()
-    @HttpCode(200)
-    async handle(@Body() updatePetById: UpdatePetByIdDto): Promise<UpdatePetByIdResponse> {
+    @Put()
+    @HttpCode(204)
+    async handle(@Body() updatePetById: UpdatePetByIdDto): Promise<void> {
       const { id } = updatePetById;
-      const petId = await this.updatePetByIdUseCase.getById(id);
-
-      return petId;
+      await this.updatePetByIdUseCase.updateById(id);
     }
 }
