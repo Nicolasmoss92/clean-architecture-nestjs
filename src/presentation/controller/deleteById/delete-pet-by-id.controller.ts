@@ -1,10 +1,11 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Injectable } from "@nestjs/common";
-import { DeletePetByIdDto } from "./get-pet-by-id.dto";
+import { DeletePetByIdDto } from "./delete-pet-by-id.dto";
+import { DeletePetByIdUseCase } from "src/core/useCases/deletePetById/delete-pet-by-id.usecase";
 
 @Controller()
 export class DeletePetController {
     constructor(
-        @Inject('DeletePetByIdUseCase') private deletPetById: DeletePetByIdUsecase,
+        @Inject('DeletePetByIdUseCase') private deletePetByIdUseCase: DeletePetByIdUseCase,
     ) { }
 
     @Delete()
