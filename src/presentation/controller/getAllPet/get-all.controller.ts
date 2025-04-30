@@ -1,5 +1,5 @@
 import { Controller, Get, HttpCode, Inject } from "@nestjs/common";
-import { GetPetByIdResponse } from "../getById/get-pet-by-id-reposnse.dto";
+import { GetPetByIdResponse } from "../getPetById/get-pet-by-id-reposnse.dto";
 
 @Controller('petServiceGetAll')
 export class GetAllPetController {
