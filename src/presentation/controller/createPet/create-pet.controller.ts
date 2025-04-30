@@ -4,7 +4,7 @@ import { CreatePetDto } from './create-pet.dto';
 import { PetMapper } from './pet.mapper';
 
 @Controller('petServiceCreate')
-export class PetController {
+export class CreatePetController {
   constructor(
     @Inject('CreatePetUseCase') private readonly createPetUsecase: ICreatePetUseCase,
   ) {}
