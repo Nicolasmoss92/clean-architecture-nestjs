@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreatePetUsecase } from './create-pet.usecase';
 import { IPetRepository } from 'src/core/ports/pet.repository';
-import { Pet } from 'src/core/entities/pet';
+import { Pet } from '../../../core/entities/pet';
 
 describe('CreatePetUsecase', () => {
   let createPetUsecase: CreatePetUsecase;
