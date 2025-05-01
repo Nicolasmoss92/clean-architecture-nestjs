@@ -13,7 +13,8 @@ describe('CreatePetController', () => {
         name: "salame",
         species: "dog",
         age: 20,
-        ownerId: "bcbdfb97-bef9-4b53-94b6-78f9972d0f2e"
+        ownerId: "bcbdfb97-bef9-4b53-94b6-78f9972d0f2e",
+        created_at: new Date(),
       };
 
       const petEntity = PetMapper.fromCreateDtoToEntity(createPetDto);
