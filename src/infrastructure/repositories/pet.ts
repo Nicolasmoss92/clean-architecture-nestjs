@@ -17,7 +17,7 @@ export class PetRepository implements IPetRepository {
     return inserted.toString();
   }
 
-  async findById(id: string): Promise<Pet> {
+  async getPetById(id: string): Promise<Pet> {
       return this.knex('pets')
       .where('id', id)
       .first();
