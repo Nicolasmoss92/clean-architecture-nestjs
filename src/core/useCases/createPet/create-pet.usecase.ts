@@ -13,7 +13,7 @@ export class CreatePetUsecase implements ICreatePetUseCase {
   async create(body: Pet): Promise<any> {
     const pet = await this.petRepository.getPetById(body.id);
 
-    if (!pet) {
+    if (pet.id === body.id) {
       throw new PetAlreadyExistsException;
     }
 
