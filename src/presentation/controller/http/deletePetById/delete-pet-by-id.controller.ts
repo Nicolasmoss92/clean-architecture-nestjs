@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Injectable } from "@nestjs/common";
+import { Body, Controller, Delete, HttpCode, Inject } from "@nestjs/common";
 import { DeletePetByIdDto } from "./delete-pet-by-id.dto";
 import { DeletePetByIdUseCase } from "src/core/useCases/deletePetById/delete-pet-by-id.usecase";
 

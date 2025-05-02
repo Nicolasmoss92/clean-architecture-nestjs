@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { IPetRepository } from "src/core/ports/pet.repository";
 import { IGetPetByIdUseCase } from "./get-pet-by-id.interface";
-import { Pet } from "src/core/entities/pet";
+import { Pet } from "../../../core/entities/pet";
 
 @Injectable()
 export class GetPetByIdUseCase implements IGetPetByIdUseCase {
