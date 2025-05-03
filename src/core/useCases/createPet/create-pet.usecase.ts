@@ -11,10 +11,11 @@ export class CreatePetUsecase implements ICreatePetUseCase {
   ) { }
 
   async create(body: Pet): Promise<any> {
-    const pet = await this.petRepository.getPetById(body.id);
-
-    if (pet && pet.id === body.id) {
-      throw new PetAlreadyExistsException;
+    console.log('CreatePetUsecase', body);
+    const existingPet = await this.petRepository.getPetById(body.id);
+    
+    if (existingPet) {
+      throw new PetAlreadyExistsException();
     }
 
     await this.petRepository.create(body);

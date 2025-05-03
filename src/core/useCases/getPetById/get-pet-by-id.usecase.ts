@@ -10,6 +10,6 @@ export class GetPetByIdUseCase implements IGetPetByIdUseCase {
     ) {}
 
     async getById(id: string): Promise<Pet>{
-      return;
+      return await this.petRepository.getPetById(id);
     }
 }
