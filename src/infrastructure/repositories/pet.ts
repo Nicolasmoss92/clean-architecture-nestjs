@@ -23,6 +23,15 @@ export class PetRepository implements IPetRepository {
       .first();
   }
 
+  async updateById(id: string, body: Pet): Promise<Pet> {
+    const [updated] = await this.knex('pets')
+      .where('id', id)
+      .update(body)
+      .returning('*');
+  
+    return updated;
+  }
+
   async deleteById(id: string): Promise<void> {
     await this.knex('pets')
       .where('id', id)
