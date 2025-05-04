@@ -1,23 +1,29 @@
-import { IsInt, IsNotEmpty, IsString, IsUUID, Max, Min } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsInt, IsNotEmpty, IsString, IsUUID, Max, Min } from 'class-validator';
 
 export class CreatePetDto {
-    @IsUUID()
-    @IsNotEmpty()
-    id: string;
+  @ApiProperty()
+  @IsUUID()
+  @IsNotEmpty()
+  id: string;
 
-    @IsString()
-    @IsNotEmpty()
-    name: string;
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-    @IsString()
-    @IsNotEmpty()
-    species: string;
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  species: string;
 
-    @IsInt()
-    @Min(0)
-    @Max(20)
-    age: number;
+  @ApiProperty()
+  @IsInt()
+  @Min(0)
+  @Max(20)
+  age: number;
 
-    @IsUUID()
-    ownerId: string;
+  @ApiProperty()
+  @IsUUID()
+  ownerId: string;
 }
