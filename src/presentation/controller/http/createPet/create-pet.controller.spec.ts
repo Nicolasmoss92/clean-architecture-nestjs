@@ -31,6 +31,9 @@ describe('CreatePetController', () => {
 
       const expectedEntity = PetMapper.fromCreateDtoToEntity(createPetDto);
 
+      expectedEntity.created_at = expect.any(Date);
+      expectedEntity.updated_at = expect.any(Date);
+
       await controller.handle(createPetDto);
 
       expect(mockUseCase.create).toHaveBeenCalledWith(expectedEntity);

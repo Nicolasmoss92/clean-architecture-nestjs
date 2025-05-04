@@ -10,8 +10,7 @@ export class CreatePetUsecase implements ICreatePetUseCase {
     @Inject('PetRepository') private petRepository: IPetRepository
   ) { }
 
-  async create(body: Pet): Promise<any> {
-    console.log('CreatePetUsecase', body);
+  async create(body: Pet): Promise<void> {
     const existingPet = await this.petRepository.getPetById(body.id);
     
     if (existingPet) {

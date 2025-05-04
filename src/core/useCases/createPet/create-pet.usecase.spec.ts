@@ -1,54 +1,60 @@
 import { CreatePetUsecase } from './create-pet.usecase';
+import { IPetRepository } from 'src/core/ports/pet.repository';
 import { Pet } from '../../../core/entities/pet';
 import { PetAlreadyExistsException } from '../../../core/exceptions/pet-already-exists.exception';
 
 describe('CreatePetUsecase', () => {
   let useCase: CreatePetUsecase;
-  const mockPetRepository = {
-    create: jest.fn(),
-    getPetById: jest.fn(),
-  };
+  let mockRepository: jest.Mocked<IPetRepository>;
 
   beforeEach(() => {
-    useCase = new CreatePetUsecase(mockPetRepository as any);
+    mockRepository = {
+      getPetById: jest.fn(),
+      create: jest.fn(),
+    } as unknown as jest.Mocked<IPetRepository>;
+
+    useCase = new CreatePetUsecase(mockRepository);
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  it('deve chamar petRepository.create com a entidade Pet', async () => {
-    const pet: Pet = new Pet({
-      id: '123e4567-e89b-12d3-a456-426614174000',
-      name: 'Rex',
+  it('should create a new pet if it does not already exist', async () => {
+    const newPet = new Pet({
+      id: '123',
+      name: 'Bolota',
       species: 'dog',
-      age: 5,
-      ownerId: '321e4567-e89b-12d3-a456-426614174000',
+      age: 3,
+      ownerId: 'owner-xyz',
       created_at: new Date(),
       updated_at: new Date(),
     });
 
-    mockPetRepository.getPetById.mockResolvedValue(null);
+    mockRepository.getPetById.mockResolvedValue(null);
 
-    await useCase.create(pet);
+    await useCase.create(newPet);
 
-    expect(mockPetRepository.create).toHaveBeenCalledWith(pet);
+    expect(mockRepository.getPetById).toHaveBeenCalledWith('123');
+    expect(mockRepository.create).toHaveBeenCalledWith(newPet);
+    expect(mockRepository.create).toHaveBeenCalledTimes(1);
   });
 
-  it('deve lançar PetAlreadyExistsException se o pet já existir', async () => {
-    const pet: Pet = new Pet({
-      id: '123e4567-e89b-12d3-a456-426614174000',
-      name: 'Rex',
+  it('should throw PetAlreadyExistsException if pet already exists', async () => {
+    const existingPet = new Pet({
+      id: '123',
+      name: 'Bolota',
       species: 'dog',
-      age: 5,
-      ownerId: '321e4567-e89b-12d3-a456-426614174000',
+      age: 3,
+      ownerId: 'owner-xyz',
       created_at: new Date(),
       updated_at: new Date(),
     });
 
-    mockPetRepository.getPetById.mockResolvedValue(pet);
+    mockRepository.getPetById.mockResolvedValue(existingPet);
 
-    await expect(useCase.create(pet)).rejects.toThrow(PetAlreadyExistsException);
-    expect(mockPetRepository.create).not.toHaveBeenCalled();
+    await expect(useCase.create(existingPet)).rejects.toThrow(PetAlreadyExistsException);
+    expect(mockRepository.getPetById).toHaveBeenCalledWith('123');
+    expect(mockRepository.create).not.toHaveBeenCalled();
   });
 });
