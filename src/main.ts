@@ -1,7 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { SwaggerModule } from '@nestjs/swagger';
+import { config } from 'process';
+import * as YAML from 'yamljs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,15 +16,8 @@ async function bootstrap() {
     }),
   );
 
-  const config = new DocumentBuilder()
-    .setTitle('Pet Service API')
-    .setDescription('API para gerenciar pets')
-    .setVersion('1.0')
-    .addTag('pets')
-    .build();
-
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document);
+  const swaggerDocument = YAML.load('./doc/openapi.yaml');
+  SwaggerModule.setup('api/docs', app, swaggerDocument);
 
   await app.listen(process.env.PORT ?? 3000);
 }
