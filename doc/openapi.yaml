@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: Pet Service API
+  description: API para gerenciar pets
+  version: 1.0.0
+paths:
+  /pets:
+    post:
+      summary: Cria um novo pet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePetDto'
+      responses:
+        '204':
+          description: ''
+        '409':
+          description: Pet já existe
+components:
+  schemas:
+    CreatePetDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        species:
+          type: string
+        age:
+          type: integer
+          minimum: 0
+          maximum: 20
+        ownerId:
+          type: string
+          format: uuid
+      required:
+        - id
+        - name
+        - species
+        - age
+        - ownerId
