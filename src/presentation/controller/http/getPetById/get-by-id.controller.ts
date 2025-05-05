@@ -13,8 +13,7 @@ export class GetPetByIdController {
     @HttpCode(200)
     async handle(@Body() getPetById: GetPetByIdDto): Promise<GetPetByIdResponse> {
       const { id } = getPetById;
-      const petId = await this.getPetByIdUseCase.getById(id);
-
-      return petId;
+      const pet = await this.getPetByIdUseCase.getById(id);
+      return pet;
     }
 }
