@@ -3,13 +3,13 @@ import { ICreatePetUseCase } from '../../../../core/useCases/createPet/create-pe
 import { CreatePetDto } from './create-pet.dto';
 import { PetMapper } from './pet.mapper';
 
-@Controller('petServiceCreate')
+@Controller('v1')
 export class CreatePetController {
   constructor(
     @Inject('CreatePetUseCase') private readonly createPetUsecase: ICreatePetUseCase,
   ) {}
   
-  @Post()
+  @Post('/pet')
   @HttpCode(204)
   async handle(@Body() createPetDto: CreatePetDto): Promise<void> {
     const pet = PetMapper.fromCreateDtoToEntity(createPetDto);
