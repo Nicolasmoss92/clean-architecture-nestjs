@@ -11,8 +11,8 @@ export class CreatePetController {
   
   @Post('/pet')
   @HttpCode(204)
-  async handle(@Body() createPetDto: CreatePetDto): Promise<void> {
-    const pet = PetMapper.fromCreateDtoToEntity(createPetDto);
+  async handle(@Body() body: CreatePetDto): Promise<void> {
+    const pet = PetMapper.fromCreateDtoToEntity(body);
     
     await this.createPetUsecase.create(pet);
   }
