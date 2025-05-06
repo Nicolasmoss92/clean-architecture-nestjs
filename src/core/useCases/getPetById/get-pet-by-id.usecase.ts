@@ -12,6 +12,7 @@ export class GetPetByIdUseCase implements IGetPetByIdUseCase {
 
     async getById(id: string): Promise<Pet>{
       const pet = await this.petRepository.getPetById(id);
+      
       if (!pet) {
         throw new PetNotFoundException();
       }

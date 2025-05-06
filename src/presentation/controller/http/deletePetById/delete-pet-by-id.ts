@@ -1,16 +1,16 @@
-import { Body, Controller, Delete, HttpCode, Inject } from "@nestjs/common";
+import { Body, Controller, Delete, HttpCode, Inject, Param } from "@nestjs/common";
 import { DeletePetByIdDto } from "./delete-pet-by-id.dto";
-import { DeletePetByIdUseCase } from "src/core/useCases/deletePetById/delete-pet-by-id.usecase";
+import { IDeletePetByIdUseCase } from "../../../../core/useCases/deletePetById/delete-pet-by-id.interface";
 
-@Controller()
+@Controller('v1')
 export class DeletePetController {
-    constructor(
-        @Inject('DeletePetByIdUseCase') private deletePetByIdUseCase: DeletePetByIdUseCase,
-    ) { }
+  constructor(
+    @Inject('DeletePetByIdUseCase') private deletePetByIdUseCase: IDeletePetByIdUseCase,
+  ) { }
 
-    @Delete()
-    @HttpCode(204)
-    async handle(@Body() deletePetById: DeletePetByIdDto): Promise<any>{
-        return;
-    }
+  @Delete('/delete/pet/:id')
+  @HttpCode(204)
+  async handle(@Param('id') id: string): Promise<any> {
+    return await this.deletePetByIdUseCase.deleteById(id);
+  }
 }
