@@ -1,4 +1,4 @@
-import { ListPetsController } from "./list-pets.controller";
+import { ListPetsController } from "./list-pets";
 import { IListPetsUseCase } from "../../../../core/useCases/listPets/list-pets.interface";
 
 describe('ListPetsController', () => {
