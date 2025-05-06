@@ -1,4 +1,4 @@
-import { CreatePetController } from "./create-pet.controller";
+import { CreatePetController } from "./create-pet";
 import { PetMapper } from "./pet.mapper";
 import { CreatePetDto } from "./create-pet.dto";
 import { ICreatePetUseCase } from "../../../../core/useCases/createPet/create-pet.interface";
