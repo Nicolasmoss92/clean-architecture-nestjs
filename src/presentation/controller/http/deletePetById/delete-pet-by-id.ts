@@ -10,7 +10,9 @@ export class DeletePetController {
 
   @Delete('/delete/pet/:id')
   @HttpCode(204)
-  async handle(@Param('id') id: string): Promise<any> {
+  async handle(@Param() deleteById: DeletePetByIdDto): Promise<any> {
+    const { id } = deleteById;
+    
     return await this.deletePetByIdUseCase.deleteById(id);
   }
 }
