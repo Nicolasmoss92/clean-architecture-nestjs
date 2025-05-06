@@ -2,7 +2,7 @@
 ## Description
 # NestJS Clean Architecture Boilerplate
 
-Este repositório é um modelo base para construção de APIs modernas com foco em escalabilidade, manutenibilidade e clareza de responsabilidades, utilizando os princípios da Clean Architecture com o framework NestJS.
+Este repositório é um modelo base para construção de APIs modernas com foco em escalabilidade, manutenibilidade e clareza de responsabilidades, utilizando os princípios da Clean Architecture com o framework NestJS. Foi inspirado na estrutura de estudo [Nicolasmoss92/modelo-arquitetura-limpa](https://github.com/Nicolasmoss92/modelo-arquitetura-limpa), adaptado e expandido para incluir implementações práticas com NestJS e testes unitários.
 
 ---
 
