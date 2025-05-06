@@ -9,7 +9,7 @@ export class UpdatePetUseCase implements IUpdatePetUseCase {
         @Inject('PetRepository') private petRepository: IPetRepository,
     ) {}
 
-    async update(pet: Pet): Promise<void>{
-      await this.petRepository.update(pet);
+    async update(body: Pet): Promise<void>{
+      await this.petRepository.update(body);
     }
 }

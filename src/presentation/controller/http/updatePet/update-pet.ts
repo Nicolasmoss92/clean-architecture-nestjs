@@ -10,8 +10,8 @@ export class UpdatePetByIdController {
   
     @Put('/update/pet/:id')
     @HttpCode(204)
-    async handle(@Body() updatePetById: UpdatePetDTO): Promise<void> {
+    async handle(@Body() body: UpdatePetDTO): Promise<void> {
 
-      await this.updatePetByIdUseCase.update(updatePetById);
+      await this.updatePetByIdUseCase.update(body);
     }
 }

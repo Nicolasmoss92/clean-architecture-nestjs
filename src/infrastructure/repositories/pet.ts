@@ -28,20 +28,21 @@ export class PetRepository implements IPetRepository {
       .first();
   }
 
-  async update(pet: Pet): Promise<void> {
+  async update(body: Pet): Promise<void> {
     const [updated] = await this.knex('pets')
-      .where('id', pet.id)
+      .where('id', body.id)
       .update({
-        name: pet.name,
-        species: pet.species,
-        age: pet.age,
-        ownerId: pet.ownerId,
+        name: body.name,
+        species: body.species,
+        age: body.age,
+        ownerId: body.ownerId,
         updated_at: new Date(),
       })
       .returning('*');
   
     return updated;
   }
+
   async deleteById(id: string): Promise<void> {
     await this.knex('pets')
       .where('id', id)
