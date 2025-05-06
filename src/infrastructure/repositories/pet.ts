@@ -28,10 +28,16 @@ export class PetRepository implements IPetRepository {
       .first();
   }
 
-  async updateById(id: string, body: Pet): Promise<Pet> {
+  async update(body: Pet): Promise<void> {
     const [updated] = await this.knex('pets')
-      .where('id', id)
-      .update(body)
+      .where('id', body.id)
+      .update({
+        name: body.name,
+        species: body.species,
+        age: body.age,
+        ownerId: body.ownerId,
+        updated_at: new Date(),
+      })
       .returning('*');
   
     return updated;

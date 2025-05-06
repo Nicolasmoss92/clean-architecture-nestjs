@@ -1,33 +1,86 @@
 
 ## Description
+# NestJS Clean Architecture Boilerplate
 
-Arquitetura Limpa com NestJS 
-Este projeto foi desenvolvido com foco em escalabilidade, manutenibilidade e clareza de responsabilidades, seguindo os princípios da Clean Architecture.
+Este repositório é um modelo base para construção de APIs modernas com foco em escalabilidade, manutenibilidade e clareza de responsabilidades, utilizando os princípios da Clean Architecture com o framework NestJS.
 
-Optei por não utilizar classes genéricas como BaseController ou BaseRepository.
+---
 
-Por que não usar bases genéricas?
-Aproveitamento inteligente do NestJS:
-O NestJS já fornece uma arquitetura baseada em decorators e injeção de dependência que facilita a separação de camadas e o desacoplamento de responsabilidades. Criar controladores ou repositórios genéricos traria complexidade desnecessária e violaria o princípio KISS (Keep It Simple, Stupid).
+## Objetivo
 
-Foco na coesão e clareza:
-Cada classe foi pensada para representar um único propósito. Com isso, cada controller é responsável por um caso de uso específico, facilitando testes, manutenções e futuras evoluções do código.
+Este projeto serve como boilerplate genérico e extensível para aplicações Node.js com NestJS, permitindo a evolução natural para sistemas com múltiplos microserviços de forma organizada e desacoplada. Ele pode ser adaptado e aprimorado conforme o domínio e a necessidade do sistema.
 
-Interfaces e inversão de dependência na prática:
-A arquitetura respeita o fluxo de dependências da Clean Architecture — o domínio não depende de frameworks. Todas as dependências são invertidas por meio de interfaces e injeção de dependência. Isso garante um sistema altamente testável, desacoplado e pronto para mudanças.
+---
 
-Casos de uso isolados e independentes de frameworks
-Os casos de uso foram implementados sem dependência direta do NestJS. Toda a lógica de negócio vive no núcleo da aplicação, e as únicas menções ao framework são:
+## Arquitetura Aplicada
 
- - O decorator @Injectable() para permitir injeção;
+### Princípios adotados:
 
- - O uso de @Inject() para resolução de dependências.
+- **Clean Architecture** na separação de camadas e regras de dependência.
+- **NestJS** utilizado com responsabilidade — apenas nas camadas externas.
+- **Casos de uso desacoplados de qualquer framework**.
+- **Inversão de dependência** com o uso de interfaces e injeção via `tsyringe`.
+- **Responsabilidade única** para cada classe e módulo.
+- **Alta testabilidade** e facilidade de refatoração.
 
-Essas inserções são mínimas e poderiam ser facilmente trocadas por qualquer mecanismo de injeção, mantendo o núcleo da aplicação limpo, reutilizável e desacoplado da infraestrutura.
+---
 
-Objetivo
-Esse projeto tem como objetivo ser um modelo base reutilizável para aplicações Node.js com NestJS, aplicando os princípios da Arquitetura Limpa desde o início, permitindo um crescimento saudável e controlado da aplicação.
+## Por que não usamos `BaseController` ou `BaseRepository`?
 
+- **Aproveitamento inteligente do NestJS**: sua arquitetura baseada em decorators e injeção de dependência já promove a separação de camadas.
+- **Evitar complexidade desnecessária**: bases genéricas muitas vezes violam o princípio **KISS (Keep It Simple, Stupid)**.
+- **Foco na coesão e clareza**: cada classe tem um único propósito, facilitando testes, manutenção e leitura.
+
+---
+
+## Independência de Framework
+
+- **Casos de uso** vivem no núcleo da aplicação e **não conhecem NestJS**.
+- O **domínio** não depende de infraestrutura, frameworks ou bibliotecas externas.
+- As únicas menções ao NestJS nos casos de uso são:
+  - `@Injectable()` para permitir a injeção;
+  - `@Inject()` para resolver dependências.
+
+Essas inserções são **mínimas e facilmente substituíveis**, o que garante um núcleo limpo, reutilizável e sustentável.
+
+---
+
+## Estrutura do Projeto
+src/
+├── config/                       # Configurações globais
+├── core/                         # Núcleo da aplicação (domínio + regras de negócio)
+│   ├── entities/                 # Entidades de domínio
+│   ├── exceptions/              # Exceções de domínio
+│   ├── ports/                    # Interfaces e contratos (input/output)
+│   ├── useCases/                 # Casos de uso (application layer)
+│   └── valueObjects/            # Objetos de valor
+├── infrastructure/              # Camada de infraestrutura
+│   ├── database/                # Configuração e conexões com banco
+│   ├── integrations/            # Integrações externas (se houver)
+│   └── repositories/            # Implementações dos repositórios (adapters)
+├── presentation/                # Interface com o mundo exterior (HTTP, controllers)
+│   └── controller\http/         # Controladores HTTP organizados por caso de uso
+├── shared/                      # Módulos e utilitários compartilhados
+├── app.module.ts                # Módulo principal do NestJS
+└── main.ts                      # Ponto de entrada da aplicação
+
+
+## Tecnologias
+
+- **NestJS** — framework de aplicação
+- **Knex.js** — query builder (acesso ao PostgreSQL)
+- **Swagger (OpenAPI)** — documentação automática da API
+- **Jest** — testes unitários
+- **tsyringe** — injeção de dependência leve
+- **PostgreSQL** — banco relacional (via `pg`)
+
+---
+
+## Testes
+
+Testes unitários estão disponíveis para os principais casos de uso e controladores. A estrutura desacoplada torna os testes **simples, rápidos e confiáveis**.
+
+---
 ## Project setup
 
 ```bash
@@ -60,47 +113,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Run docker
-```bash
-$ docker-compose up --build pet-service
-```
+## Open Swagger doc
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+http://localhost:3000/api/docs
