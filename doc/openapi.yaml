@@ -3,6 +3,7 @@ info:
   title: Pet Service API
   description: API para gerenciar pets
   version: 1.0.0
+
 paths:
   /pet:
     post:
@@ -15,7 +16,7 @@ paths:
               $ref: '#/components/schemas/CreatePetDto'
       responses:
         '204':
-          description: ''
+          description: Pet criado com sucesso
         '409':
           description: Pet já existe
     get:
@@ -31,7 +32,63 @@ paths:
                   $ref: '#/components/schemas/CreatePetDto'
         '404':
           description: Nenhum pet encontrado
+
+  /pet/{id}:
+    get:
+      summary: Retorna um pet pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Pet encontrado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePetDto'
+        '404':
+          description: Pet não encontrado
           
+    put:
+      summary: Atualiza um pet existente
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePetDto'
+      responses:
+        '200':
+          description: Pet atualizado com sucesso
+        '404':
+          description: Pet não encontrado
+
+    delete:
+      summary: Remove um pet pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Pet removido com sucesso
+        '404':
+          description: Pet não encontrado
+
 components:
   schemas:
     CreatePetDto:
