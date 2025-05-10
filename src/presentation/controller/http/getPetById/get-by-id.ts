@@ -10,7 +10,7 @@ export class GetPetByIdController {
       @Inject('GetPetByIdUseCase') private readonly getPetByIdUseCase: IGetPetByIdUseCase,
     ) {}
   
-    @Get()
+    @Get('/pets/:id')
     @HttpCode(200)
     async handle(@Param() getPetById: GetPetByIdDto): Promise<GetPetByIdResponse> {
       const { id } = getPetById;
