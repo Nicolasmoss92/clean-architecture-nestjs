@@ -9,10 +9,12 @@ import { DeletePetController } from './presentation/controller/http/deletePetByI
 import { DeletePetByIdUseCase } from './core/useCases/deletePetById/delete-pet-by-id.usecase';
 import { GetPetByIdController } from './presentation/controller/http/getPetById/get-by-id';
 import { GetPetByIdUseCase } from './core/useCases/getPetById/get-pet-by-id.usecase';
+import { UpdatePetUseCase } from './core/useCases/updatePet/update-pet-by-id.usecase';
+import { UpdatePetByIdController } from './presentation/controller/http/updatePet/update-pet';
 
 @Module({
   imports: [KnexModule, RepositoriesModule],
-  controllers: [CreatePetController, ListPetsController, DeletePetController, GetPetByIdController],
+  controllers: [CreatePetController, ListPetsController, DeletePetController, GetPetByIdController, UpdatePetByIdController],
   providers: [
     {
       provide: 'CreatePetUseCase',
@@ -29,6 +31,10 @@ import { GetPetByIdUseCase } from './core/useCases/getPetById/get-pet-by-id.usec
     {
       provide: 'DeletePetByIdUseCase',
       useClass: DeletePetByIdUseCase,
+    },
+    {
+      provide: 'UpdatePetUseCase',
+      useClass: UpdatePetUseCase,
     },
   ],
 })
