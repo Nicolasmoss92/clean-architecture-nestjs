@@ -35,7 +35,6 @@ export class PetRepository implements IPetRepository {
         name: body.name,
         species: body.species,
         age: body.age,
-        ownerId: body.ownerId,
         updated_at: new Date(),
       })
       .returning('*');
