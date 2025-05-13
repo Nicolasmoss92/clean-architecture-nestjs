@@ -11,10 +11,13 @@ import { GetPetByIdController } from './presentation/controller/http/getPetById/
 import { GetPetByIdUseCase } from './core/useCases/getPetById/get-pet-by-id.usecase';
 import { UpdatePetUseCase } from './core/useCases/updatePet/update-pet-by-id.usecase';
 import { UpdatePetByIdController } from './presentation/controller/http/updatePet/update-pet';
+import { AuthController } from './infrastructure/auth/auth';
+import { AuthModule } from './infrastructure/auth/auth.module';
+import { AuthService } from './infrastructure/auth/auth.service';
 
 @Module({
-  imports: [KnexModule, RepositoriesModule],
-  controllers: [CreatePetController, ListPetsController, DeletePetController, GetPetByIdController, UpdatePetByIdController],
+  imports: [KnexModule, RepositoriesModule, AuthModule],
+  controllers: [CreatePetController, ListPetsController, DeletePetController, GetPetByIdController, UpdatePetByIdController, AuthController],
   providers: [
     {
       provide: 'CreatePetUseCase',
@@ -35,6 +38,10 @@ import { UpdatePetByIdController } from './presentation/controller/http/updatePe
     {
       provide: 'UpdatePetUseCase',
       useClass: UpdatePetUseCase,
+    },
+    {
+      provide: 'AuthService',
+      useClass: AuthService,
     },
   ],
 })
