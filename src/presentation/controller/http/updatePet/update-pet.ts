@@ -5,7 +5,7 @@ import { IUpdatePetUseCase } from "src/core/useCases/updatePet/update-pet-by-id.
 @Controller('v1')
 export class UpdatePetByIdController {
     constructor(
-      @Inject('UpdatePetByIdUseCase') private readonly updatePetByIdUseCase: IUpdatePetUseCase,
+      @Inject('UpdatePetUseCase') private readonly updatePetByIdUseCase: IUpdatePetUseCase,
     ) {}
   
     @Put('/update/pet/:id')
