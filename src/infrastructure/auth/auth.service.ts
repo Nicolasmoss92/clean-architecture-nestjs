@@ -8,7 +8,6 @@ export class AuthService {
   async login(loginDto: { email: string; password: string }) {
     const { email, password } = loginDto;
 
-    // Simulação de validação de usuário (trocar por BD real)
     if (email !== 'admin@teste.com' || password !== '123456') {
       throw new UnauthorizedException('Invalid credentials');
     }
