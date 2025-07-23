@@ -1,7 +1,7 @@
 import { GetPetByIdUseCase } from './get-pet-by-id.usecase';
 import { IPetRepository } from 'src/core/ports/pet.repository';
 import { Pet } from '../../../core/entities/pet';
-import { PetNotFoundException } from 'src/core/exceptions/pet-not-found.exception';
+import { PetNotFoundException } from '../../../core/exceptions/pet-not-found.exception';
 
 describe('GetPetByIdUseCase', () => {
   let useCase: GetPetByIdUseCase;
