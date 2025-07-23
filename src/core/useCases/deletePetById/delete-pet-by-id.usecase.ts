@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IDeletePetByIdUseCase } from './delete-pet-by-id.interface';
-import { IPetRepository } from 'src/core/ports/pet.repository';
-import { PetNotFoundException } from 'src/core/exceptions/pet-not-found.exception';
+import { IPetRepository } from '../../../core/ports/pet.repository';
+import { PetNotFoundException } from '../../../core/exceptions/pet-not-found.exception';
 
 @Injectable()
 export class DeletePetByIdUseCase implements IDeletePetByIdUseCase {
