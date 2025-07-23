@@ -1,5 +1,4 @@
 import { GetPetByIdDto } from './get-pet-by-id.dto';
-import { GetPetByIdResponse } from './get-pet-by-id-response.dto';
 import { GetPetByIdController } from './get-by-id';
 import { IGetPetByIdUseCase } from 'src/core/useCases/getPetById/get-pet-by-id.interface';
 
@@ -25,20 +24,20 @@ describe('GetPetByIdController', () => {
         id: '1234',
       };
 
-      const expectedPet = {
-        id: '1234',
-        name: 'Rex',
-        species: 'dog',
-        age: 5,
-        ownerId: 'owner-001',
-        created_at: new Date(),
-        updated_at: new Date(),
-        validate: jest.fn(),
-      };
+      // const expectedPet = {
+      //   id: '1234',
+      //   name: 'Rex',
+      //   species: 'dog',
+      //   age: 5,
+      //   ownerId: 'owner-001',
+      //   created_at: new Date(),
+      //   updated_at: new Date(),
+      //   validate: jest.fn(),
+      // };
 
       //mockUseCase.getById.mockResolvedValue(expectedPet);
 
-      const result = await controller.handle(getPetByIdDto);
+      await controller.handle(getPetByIdDto);
 
       expect(mockUseCase.getById).toHaveBeenCalledWith('1234');
       expect(mockUseCase.getById).toHaveBeenCalledTimes(1);

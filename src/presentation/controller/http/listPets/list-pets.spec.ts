@@ -1,5 +1,5 @@
-import { ListPetsController } from "./list-pets";
-import { IListPetsUseCase } from "../../../../core/useCases/listPets/list-pets.interface";
+import { ListPetsController } from './list-pets';
+import { IListPetsUseCase } from '../../../../core/useCases/listPets/list-pets.interface';
 
 describe('ListPetsController', () => {
   let controller: ListPetsController;
@@ -28,16 +28,16 @@ describe('ListPetsController', () => {
           ownerId: 'bcbdfb97-bef9-4b53-94b6-78f9972d0f2e',
           created_at: new Date('2025-05-03T15:57:08.148Z'),
           updated_at: new Date('2025-05-03T15:57:08.148Z'),
-          validate: jest.fn(), 
-        }
+          validate: jest.fn(),
+        },
       ];
-  
+
       //mockUseCase.list.mockResolvedValue();
-  
+
       const result = await controller.handle();
-  
+
       expect(mockUseCase.list).toHaveBeenCalledTimes(1);
       expect(result).toEqual(pets);
     });
-  });  
+  });
 });

@@ -6,13 +6,11 @@ import { PetAlreadyExistsException } from '../../../core/exceptions/pet-already-
 
 @Injectable()
 export class CreatePetUsecase implements ICreatePetUseCase {
-  constructor(
-    @Inject('PetRepository') private petRepository: IPetRepository
-  ) { }
+  constructor(@Inject('PetRepository') private petRepository: IPetRepository) {}
 
   async create(body: Pet): Promise<void> {
     const existingPet = await this.petRepository.getPetById(body.id);
-    
+
     if (existingPet) {
       throw new PetAlreadyExistsException();
     }

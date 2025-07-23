@@ -1,5 +1,5 @@
-import { Age } from "../valueObjects/age";
-import { Entity } from "./entity";
+import { Age } from '../valueObjects/age';
+import { Entity } from './entity';
 
 export class Pet extends Entity<Pet> {
   public readonly id: string;
@@ -17,11 +17,11 @@ export class Pet extends Entity<Pet> {
   protected validate(props: Partial<Pet>): void {
     const { age } = props;
     if (!props.name) {
-      throw new Error("Pet must have a name.");
+      throw new Error('Pet must have a name.');
     }
 
     if (!props.species) {
-      throw new Error("Pet must have a species.");
+      throw new Error('Pet must have a species.');
     }
 
     if (age) {
@@ -29,7 +29,7 @@ export class Pet extends Entity<Pet> {
     }
 
     if (!props.ownerId) {
-      throw new Error("Pet must have an ownerId.");
+      throw new Error('Pet must have an ownerId.');
     }
   }
 }

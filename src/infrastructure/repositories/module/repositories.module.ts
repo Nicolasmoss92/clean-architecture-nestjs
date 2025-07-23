@@ -3,7 +3,7 @@ import { PetRepository } from '../pet';
 import { KnexModule } from 'src/infrastructure/database/knex.module';
 
 @Module({
-  imports: [KnexModule], 
+  imports: [KnexModule],
   providers: [
     {
       provide: 'PetRepository',
