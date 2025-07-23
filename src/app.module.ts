@@ -17,7 +17,14 @@ import { AuthService } from './infrastructure/auth/auth.service';
 
 @Module({
   imports: [KnexModule, RepositoriesModule, AuthModule],
-  controllers: [CreatePetController, ListPetsController, DeletePetController, GetPetByIdController, UpdatePetByIdController, AuthController],
+  controllers: [
+    CreatePetController,
+    ListPetsController,
+    DeletePetController,
+    GetPetByIdController,
+    UpdatePetByIdController,
+    AuthController,
+  ],
   providers: [
     {
       provide: 'CreatePetUseCase',
@@ -45,4 +52,4 @@ import { AuthService } from './infrastructure/auth/auth.service';
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}

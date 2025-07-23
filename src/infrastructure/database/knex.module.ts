@@ -10,7 +10,7 @@ import { DatabaseService } from '../database/database.service';
     {
       provide: 'KnexConnection',
       inject: [ConfigService],
-      useFactory: (configService: ConfigService): Knex => {
+      useFactory: (): Knex => {
         return knex({
           client: 'pg',
           connection: {
@@ -34,4 +34,4 @@ import { DatabaseService } from '../database/database.service';
   ],
   exports: ['KnexConnection', DatabaseService],
 })
-export class KnexModule { }
+export class KnexModule {}

@@ -1,4 +1,4 @@
-import { ValueObject } from "./base-value-object";
+import { ValueObject } from './base-value-object';
 
 export class Age extends ValueObject {
   constructor(protected value: number) {
@@ -12,7 +12,7 @@ export class Age extends ValueObject {
 
   protected validate() {
     if (this.value < 0 || this.value > 20) {
-        throw new Error("Pet age must be between 0 and 20.");
-      }
+      throw new Error('Pet age must be between 0 and 20.');
+    }
   }
 }

@@ -5,27 +5,20 @@ import { IPetRepository } from 'src/core/ports/pet.repository';
 
 @Injectable()
 export class PetRepository implements IPetRepository {
-  constructor(
-    @Inject('KnexConnection') private readonly knex: Knex
-  ) {}
+  constructor(@Inject('KnexConnection') private readonly knex: Knex) {}
 
   async create(body: Pet): Promise<string> {
-    const [inserted] = await this.knex('pets')
-      .insert(body)
-      .returning('id');
-  
+    const [inserted] = await this.knex('pets').insert(body).returning('id');
+
     return inserted.toString();
   }
 
   async all(): Promise<Pet[]> {
-    return this.knex('pets')
-      .select('*');
+    return this.knex('pets').select('*');
   }
 
   async getPetById(id: string): Promise<Pet> {
-      return this.knex('pets')
-      .where('id', id)
-      .first();
+    return this.knex('pets').where('id', id).first();
   }
 
   async update(body: Pet): Promise<void> {
@@ -39,13 +32,11 @@ export class PetRepository implements IPetRepository {
         updated_at: new Date(),
       })
       .returning('*');
-  
+
     return updated;
   }
 
   async deleteById(id: string): Promise<void> {
-    await this.knex('pets')
-      .where('id', id)
-      .delete();
+    await this.knex('pets').where('id', id).delete();
   }
 }

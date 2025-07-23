@@ -1,7 +1,7 @@
-import { CreatePetController } from "./create-pet";
-import { PetMapper } from "./pet.mapper";
-import { CreatePetDto } from "./create-pet.dto";
-import { ICreatePetUseCase } from "../../../../core/useCases/createPet/create-pet.interface";
+import { CreatePetController } from './create-pet';
+import { PetMapper } from './pet.mapper';
+import { CreatePetDto } from './create-pet.dto';
+import { ICreatePetUseCase } from '../../../../core/useCases/createPet/create-pet.interface';
 
 describe('CreatePetController', () => {
   let controller: CreatePetController;
@@ -22,11 +22,11 @@ describe('CreatePetController', () => {
   describe('#handle', () => {
     it('should call use case with mapped pet entity', async () => {
       const createPetDto: CreatePetDto = {
-        id: "e5d325ca-641e-4ad8-a8de-14677d2abbcc",
-        name: "salame",
-        species: "dog",
+        id: 'e5d325ca-641e-4ad8-a8de-14677d2abbcc',
+        name: 'salame',
+        species: 'dog',
         age: 10,
-        ownerId: "bcbdfb97-bef9-4b53-94b6-78f9972d0f2e", 
+        ownerId: 'bcbdfb97-bef9-4b53-94b6-78f9972d0f2e',
       };
 
       const expectedEntity = PetMapper.fromCreateDtoToEntity(createPetDto);
