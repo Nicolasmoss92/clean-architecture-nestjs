@@ -12,13 +12,13 @@ import { DatabaseService } from '../database/database.service';
       inject: [ConfigService],
       useFactory: (): Knex => {
         return knex({
-          client: 'pg',
+          client: '',
           connection: {
-            host: 'localhost',
-            port: 5432,
-            user: 'pet_service',
-            password: '1234',
-            database: 'pet_service',
+            host: '',
+            port: ,
+            user: '',
+            password: '',
+            database: '',
           },
           migrations: {
             tableName: 'migrations',
